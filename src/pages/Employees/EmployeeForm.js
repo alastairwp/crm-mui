@@ -109,7 +109,6 @@ export default function EmployeeForm(props) {
           );
         }
       }
-      props.history.push("/person/all");
     } else {
       const updatedPerson = userProfile;
 
