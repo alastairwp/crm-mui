@@ -9,10 +9,7 @@ import {
   ThemeProvider,
 } from "@material-ui/core";
 import Header from "../components/Header";
-import PageHeader from "../components/PageHeader";
-import Employees from "../pages/Employees/Employees";
-import EmployeeForm from "../pages/Employees/EmployeeForm";
-import PeopleOutlineTwoToneIcon from "@material-ui/icons/PeopleOutlineTwoTone";
+import Contacts from "../pages/contacts";
 
 const theme = createMuiTheme({
   palette: {
@@ -61,29 +58,23 @@ function App() {
           <Route
             path="/person/all"
             render={(props) => (
-              <>
-                <PageHeader
-                  title="New Employee"
-                  subTitle="Form design with validation"
-                  icon={<PeopleOutlineTwoToneIcon fontSize="large" />}
-                />
-                <EmployeeForm {...props} mode="new" />
-                <Employees mode="new" />
-              </>
+              <Contacts
+                {...props}
+                mode="new"
+                title="New Contact Form"
+                subTitle="Enter the contact details and click submit"
+              />
             )}
           ></Route>
           <Route
             path="/person/edit/:id"
             render={(props) => (
-              <>
-                <PageHeader
-                  title="Edit Employee"
-                  subTitle="Form design with validation"
-                  icon={<PeopleOutlineTwoToneIcon fontSize="large" />}
-                />
-                <EmployeeForm {...props} mode="edit" />
-                <Employees mode="edit" />
-              </>
+              <Contacts
+                {...props}
+                mode="edit"
+                title="Edit Employee"
+                subTitle="Form design with validation"
+              />
             )}
           ></Route>
 
