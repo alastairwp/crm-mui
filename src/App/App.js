@@ -60,9 +60,11 @@ function App() {
             render={(props) => (
               <Contacts
                 {...props}
+
+                title="New Employee"
+                subTitle="Enter the contact details and click Create"
                 mode="new"
-                title="New Contact Form"
-                subTitle="Enter the contact details and click submit"
+
               />
             )}
           ></Route>
@@ -71,9 +73,10 @@ function App() {
             render={(props) => (
               <Contacts
                 {...props}
-                mode="edit"
                 title="Edit Employee"
-                subTitle="Form design with validation"
+                subTitle="Update the contact details and click Update"
+                mode="edit"
+
               />
             )}
           ></Route>
