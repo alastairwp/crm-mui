@@ -1,8 +1,11 @@
+
 import React, { useState, useEffect } from "react";
+
 import PageHeader from "../components/PageHeader";
 import Employees from "../pages/Employees/Employees";
 import EmployeeForm from "../pages/Employees/EmployeeForm";
 import PeopleOutlineTwoToneIcon from "@material-ui/icons/PeopleOutlineTwoTone";
+
 import * as personAPI from "../services/personAPI";
 import { raiseNotification } from "../index";
 
@@ -216,6 +219,7 @@ const Contacts = (props) => {
     setErrors({});
   };
 
+
   return (
     <>
       <PageHeader
@@ -223,6 +227,7 @@ const Contacts = (props) => {
         subTitle={subTitle}
         icon={<PeopleOutlineTwoToneIcon fontSize="large" />}
       />
+
       <EmployeeForm
         {...props}
         mode={mode}
@@ -241,6 +246,7 @@ const Contacts = (props) => {
         onRowClick={handleRowClick}
         selected={selected}
       />
+
     </>
   );
 };

@@ -60,9 +60,11 @@ function App() {
             render={(props) => (
               <Contacts
                 {...props}
+
                 title="New Employee"
                 subTitle="Enter the contact details and click Create"
                 mode="new"
+
               />
             )}
           ></Route>
@@ -74,6 +76,7 @@ function App() {
                 title="Edit Employee"
                 subTitle="Update the contact details and click Update"
                 mode="edit"
+
               />
             )}
           ></Route>
