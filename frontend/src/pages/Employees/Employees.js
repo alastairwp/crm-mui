@@ -17,9 +17,7 @@ import {
 import clsx from "clsx";
 import { lighten, makeStyles } from "@material-ui/core/styles";
 import FilterListIcon from "@material-ui/icons/FilterList";
-import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
 import PropTypes from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
@@ -334,22 +332,14 @@ export default function Employees(props) {
           onChangeRowsPerPage={handleChangeRowsPerPage}
         />
         <div>
-          <Button
+          {/* <Button
             variant="contained"
             color="secondary"
             className={classes.button}
             startIcon={<DeleteIcon />}
           >
             Delete
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            className={classes.button}
-            startIcon={<EditIcon />}
-          >
-            Edit
-          </Button>
+          </Button> */}
         </div>
       </Paper>
     </>

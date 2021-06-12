@@ -75,6 +75,7 @@ ReactDOM.render(
   <React.Fragment>
     <BrowserRouter>
       <ReactNotification />
+
       <App />
     </BrowserRouter>
   </React.Fragment>,
