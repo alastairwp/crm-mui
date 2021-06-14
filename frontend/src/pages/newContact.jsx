@@ -60,8 +60,6 @@ const NewContact = (props) => {
     if (validate()) {
       const res = await personAPI.newPerson(contactProfile);
       if (res.status === 200 && res.data !== null) {
-        //resetForm();
-        console.log(history);
         raiseNotification(
           "",
           `New person ${firstName} ${lastName} added successfully`,

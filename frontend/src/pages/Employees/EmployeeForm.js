@@ -31,7 +31,7 @@ export default function EmployeeForm(props) {
 
   return (
     <Paper className={classes.pageContent}>
-      <form className={classes.root} autoComplete="off">
+      <form className={classes.root} autoComplete="on">
         <Grid container>
           <Grid item xs={6}>
             <Controls.Input

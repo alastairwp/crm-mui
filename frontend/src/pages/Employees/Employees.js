@@ -188,7 +188,7 @@ export default function Employees(props) {
   const [order, setOrder] = React.useState("asc");
   const [page, setPage] = React.useState(0);
   const [orderBy, setOrderBy] = React.useState("firstName");
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const { records, onDelete, onSelectAllClick, onRowClick, selected } = props;
 
   const classes = useStyles();
