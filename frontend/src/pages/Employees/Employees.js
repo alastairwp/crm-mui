@@ -1,4 +1,6 @@
 import React from "react";
+
+import { useHotkeys } from "react-hotkeys-hook";
 import {
   Table,
   Checkbox,
@@ -191,6 +193,31 @@ export default function Employees(props) {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const { records, onDelete, onSelectAllClick, onRowClick, selected } = props;
 
+  useHotkeys(
+    "right",
+    () => {
+      if (page < Math.floor(records.length / rowsPerPage)) {
+        const upPage = page + 1;
+        setPage(upPage);
+        handleChangePage(null, upPage);
+      }
+    },
+    { filter: () => true },
+    [page, setPage]
+  );
+
+  useHotkeys(
+    "left",
+    () => {
+      if (page !== 0) {
+        const upPage = page - 1;
+        setPage(upPage);
+        handleChangePage(null, upPage);
+      }
+    },
+    { filter: () => true },
+    [page, setPage]
+  );
   const classes = useStyles();
 
   const filterFn = {

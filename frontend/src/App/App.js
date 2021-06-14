@@ -169,8 +169,10 @@ function DrawerMenu(props) {
 
 export default function App() {
   let history = useHistory();
+
   useHotkeys("ctrl+n", () => history.push("/person/new"));
   useHotkeys("ctrl+h", () => history.push("/person/all"));
+
   const [brokenLayout, setBrokenLayout] = useState(false);
 
   const responsiveHandler = (mql) => {
