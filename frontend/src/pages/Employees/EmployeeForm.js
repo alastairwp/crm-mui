@@ -36,6 +36,7 @@ export default function EmployeeForm(props) {
           <Grid item xs={6}>
             <Controls.Input
               name="firstName"
+              autoFocus
               label="First name"
               value={contactProfile.firstName ? contactProfile.firstName : ""}
               onChange={onInputChange}

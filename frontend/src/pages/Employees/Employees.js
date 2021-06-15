@@ -192,15 +192,17 @@ export default function Employees(props) {
   const [orderBy, setOrderBy] = React.useState("firstName");
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const { records, onDelete, onSelectAllClick, onRowClick, selected } = props;
+  const classes = useStyles();
 
   useHotkeys(
     "right",
     () => {
+      let upPage = 0;
       if (page < Math.floor(records.length / rowsPerPage)) {
-        const upPage = page + 1;
-        setPage(upPage);
-        handleChangePage(null, upPage);
+        upPage = page + 1;
       }
+      setPage(upPage);
+      handleChangePage(null, upPage);
     },
     { filter: () => true },
     [page, setPage]
@@ -209,16 +211,17 @@ export default function Employees(props) {
   useHotkeys(
     "left",
     () => {
-      if (page !== 0) {
-        const upPage = page - 1;
-        setPage(upPage);
-        handleChangePage(null, upPage);
+      console.log(page);
+      let downPage = Math.floor(records.length / rowsPerPage);
+      if (page > 0) {
+        downPage = page - 1;
       }
+      setPage(downPage);
+      handleChangePage(null, downPage);
     },
     { filter: () => true },
     [page, setPage]
   );
-  const classes = useStyles();
 
   const filterFn = {
     fn: (items) => {
