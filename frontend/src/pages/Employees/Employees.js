@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useHotkeys } from "react-hotkeys-hook";
 import {
@@ -21,6 +21,7 @@ import { lighten, makeStyles } from "@material-ui/core/styles";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import DeleteIcon from "@material-ui/icons/Delete";
 import PropTypes from "prop-types";
+import SearchBar from "material-ui-search-bar";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -135,6 +136,7 @@ function EnhancedTableHead(props) {
     onRequestSort,
     onSelectAllClick,
   } = props;
+
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -187,12 +189,27 @@ EnhancedTableHead.propTypes = {
 };
 
 export default function Employees(props) {
-  const [order, setOrder] = React.useState("asc");
-  const [page, setPage] = React.useState(0);
-  const [orderBy, setOrderBy] = React.useState("firstName");
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [order, setOrder] = useState("asc");
+  const [page, setPage] = useState(0);
+  const [orderBy, setOrderBy] = useState("firstName");
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const { records, onDelete, onSelectAllClick, onRowClick, selected } = props;
+  const [filtered, setFiltered] = useState();
+
   const classes = useStyles();
+  const [searched, setSearched] = useState("");
+
+  const requestSearch = (searchedVal) => {
+    const filteredRows = records.filter((row) => {
+      return row.firstName.toLowerCase().includes(searchedVal.toLowerCase());
+    });
+    setFiltered(filteredRows);
+  };
+
+  const cancelSearch = () => {
+    setSearched("");
+    requestSearch(searched);
+  };
 
   useHotkeys(
     "right",
@@ -211,7 +228,6 @@ export default function Employees(props) {
   useHotkeys(
     "left",
     () => {
-      console.log(page);
       let downPage = Math.floor(records.length / rowsPerPage);
       if (page > 0) {
         downPage = page - 1;
@@ -257,7 +273,7 @@ export default function Employees(props) {
 
   const recordsAfterPagingAndSorting = () => {
     return stableSort(
-      filterFn.fn(records),
+      filterFn.fn(filtered ? filtered : records),
       getComparator(order, orderBy)
     ).slice(page * rowsPerPage, (page + 1) * rowsPerPage);
   };
@@ -296,23 +312,17 @@ export default function Employees(props) {
     <>
       <Paper className={classes.pageContent}>
         {/* <EmployeeForm /> */}
+
         <EnhancedTableToolbar
           numSelected={selected.length}
           onDelete={onDelete}
         />
-        {/* <Controls.Input
-            label="Search Employees"
-            className={classes.searchInput}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Search />
-                </InputAdornment>
-              ),
-            }}
-            onChange={handleSearch}
-          /> */}
 
+        <SearchBar
+          value={searched}
+          onChange={(searchVal) => requestSearch(searchVal)}
+          onCancelSearch={() => cancelSearch()}
+        />
         <Table className={classes.table}>
           <EnhancedTableHead
             classes={classes}
